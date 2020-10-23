@@ -33,17 +33,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>victor</td>
-                                <td>php</td>
-                                <td>backend</td>
-                                <td>status</td>
-                                <td>test.png</td>
-                                <td>php</td>
-                                <td>blabla</td>
-                                <td>1/20/1901</td>
-                            </tr>
+                            <?php find_all_posts(); ?> 
                         </tbody>
                     </table>
 
