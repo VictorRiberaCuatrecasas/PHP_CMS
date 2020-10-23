@@ -18,24 +18,23 @@
                         <small>Author</small>
                     </h1>
 
-                    <table class="table table-bordered table-hover">
-                        <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>Author</th>
-                                <th>Title</th>
-                                <th>Category</th>
-                                <th>Status</th>
-                                <th>Image</th>
-                                <th>Tags</th>
-                                <th>Comments</th>
-                                <th>Date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php find_all_posts(); ?> 
-                        </tbody>
-                    </table>
+                    <?php
+                        if(isset($_GET["source"])){
+                            $source = $_GET["source"];
+                        } else {
+                            $source = "";
+                        }
+
+                        switch($source){
+                            case "this";
+                            echo "that";
+                            break;
+
+                            default:
+                            include "includes/view_all_posts.php";
+                            break;
+                        }
+                    ?>
 
                 </div>
             </div>
