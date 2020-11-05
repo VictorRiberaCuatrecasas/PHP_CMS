@@ -32,13 +32,26 @@
                         <td>$post_id</td>
                         <td>$post_author</td>
                         <td>$post_title</td>
-                        <td>$post_category_id</td>
+                    ";
+             
+                        $query = "SELECT * FROM categories WHERE cat_id = $post_category_id";
+                        $select_categories_id = mysqli_query($connection, $query) or die ("problem with the query ".mysqli_error($connection));     
+                        
+                        while($row = mysqli_fetch_assoc($select_categories_id)){
+                            $category_title = $row["cat_title"];
+                            $category_id = $row["cat_id"];
+
+                            echo "<td>$category_title</td>";
+                        }
+                        
+                    echo "
                         <td>$post_status</td>
                         <td><img src='../images/$post_image' alt='image' width='100' /></td>
                         <td>$post_tags</td>
                         <td>$post_comment_count</td>
                         <td>$post_date</td>
-                        <td><a href='posts.php?delete=$post_id'>Delete</a></td>
+                        <td><a href='posts.php?source=edit_post&p_id=$post_id'>Edit</a></td>
+                        <td><a href='posts.php?delete_post=$post_id'>Delete</a></td>
                         </tr>  
                     ";
                 }
@@ -48,8 +61,8 @@
 </table>
 
 <?php 
-    if(isset($_GET["delete"])){
-        $the_post_id = $_GET["delete"];
+    if(isset($_GET["delete_post"])){
+        $the_post_id = $_GET["delete_post"];
 
         $query = "DELETE FROM posts WHERE post_id = {$the_post_id}";
         $deleteQuery = mysqli_query($connection, $query) or die ("problem with the query ".mysqli_error($connection));  
